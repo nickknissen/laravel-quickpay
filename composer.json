@@ -1,0 +1,19 @@
+{
+    "name": "nickknissen/laravel-quickpay",
+    "description": "package under development",
+    "require": {
+        "quickpay/quickpay-php-client": "1.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "nickknissen\\QuickPay\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "nickknissen\\QuickPay\\QuickPayServiceProvider"
+            ]
+        }
+    }
+}
