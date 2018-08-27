@@ -24,7 +24,7 @@ class Payouts extends Quickpay
         $url = sprintf('/payouts/%s/credit?synchronized', $paymentId);
 
         return $this->request('post', $url, array_merge(
-            ['amount' => $amount, 'card' => $card->getInfo(),],
+            ['amount' => $amount, 'card' => $card->buildPayload()],
             $options
         ));
     }

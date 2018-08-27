@@ -27,7 +27,7 @@ class Card
         return '' . $this->expYear . $this->expMonth;
     }
 
-    public function getInfo()
+    public function buildPayload()
     {
         return [
             'number' => $this->number,

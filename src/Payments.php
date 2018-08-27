@@ -25,7 +25,7 @@ class Payments extends Quickpay
 
         return $this->request('post', $url, array_merge([
             'amount' => $amount,
-            'card' => $card->getInfo(),
+            'card' => $card->buildPayload(),
         ], $options));
 
     }
