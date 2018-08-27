@@ -1,6 +1,7 @@
 {
     "name": "nickknissen/laravel-quickpay",
-    "description": "package under development",
+    "description": "Simple Laravel Wrapper for the Quickpay API services.",
+    "license": "MIT",
     "require": {
         "quickpay/quickpay-php-client": "1.0.*"
     },
