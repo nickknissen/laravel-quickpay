@@ -2,8 +2,10 @@
 
 namespace nickknissen\QuickPay;
 
+use Illuminate\Support\Facades\App;
 use QuickPay\QuickPay as QuickPayVendor;
 
+use nickknissen\QuickPay\Exceptions;
 
 class Quickpay
 {
@@ -23,19 +25,22 @@ class Quickpay
         $this->client = new QuickPayVendor($credentials);
     }
 
-
-    public function find($paymentId)
+    public function request($method, $url, $data = [])
     {
-        $url = sprintf("/payments/%s", $paymentId);
+        $response = $this->client->request->$method($url, $data);
 
-        $payment = $this->client->request->get($url);
-
-        if ($payment->isSuccess()) {
-            return $payment->asObject();
+        if ($response->isSuccess()) {
+            $data = $response->asObject();
+            if (App::environment('production') && $data->test_mode) {
+                throw new QuickPayTestNotAllowedException();
+            }
+            return $data;
         } else {
-            throw new QuickPayException($payment);
+            throw new QuickPayException($response);
         }
     }
+
+
 
     public function orderIdPrefix()
     {

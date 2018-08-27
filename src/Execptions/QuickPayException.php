@@ -1,6 +1,6 @@
 <?php
 
-namespace nickknissen\QuickPay;
+namespace nickknissen\QuickPay\Exceptions;
 
 use QuickPay\API\Response;
 
