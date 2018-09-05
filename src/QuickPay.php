@@ -8,6 +8,8 @@ use QuickPay\QuickPay as QuickPayVendor;
 use nickknissen\QuickPay\Exceptions\QuickPayValidationError;
 use nickknissen\QuickPay\Exceptions\QuickPayTestNotAllowed;
 use nickknissen\QuickPay\Exceptions\ConfigNotCorrect;
+use nickknissen\QuickPay\Exceptions\CardNotAccepted;
+
 
 class Quickpay
 {
@@ -43,6 +45,11 @@ class Quickpay
             if (App::environment('production') && $data->test_mode) {
                 throw new QuickPayTestNotAllowed();
             }
+
+            if (!empty($data->operations) && !$data->accepted) {
+                throw new CardNotAccepted($data);
+            }
+
             return $data;
         } else {
             throw new QuickPayValidationError($response);
