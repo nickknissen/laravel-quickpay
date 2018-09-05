@@ -5,7 +5,8 @@ namespace nickknissen\QuickPay;
 use Illuminate\Support\Facades\App;
 use QuickPay\QuickPay as QuickPayVendor;
 
-use nickknissen\QuickPay\Exceptions;
+use nickknissen\QuickPay\Exceptions\QuickPayValidationError;
+use nickknissen\QuickPay\Exceptions\QuickPayTestNotAllowed;
 
 class Quickpay
 {
@@ -31,12 +32,13 @@ class Quickpay
 
         if ($response->isSuccess()) {
             $data = $response->asObject();
+
             if (App::environment('production') && $data->test_mode) {
-                throw new QuickPayTestNotAllowedException();
+                throw new QuickPayTestNotAllowed();
             }
             return $data;
         } else {
-            throw new QuickPayException($response);
+            throw new QuickPayValidationError($response);
         }
     }
 
