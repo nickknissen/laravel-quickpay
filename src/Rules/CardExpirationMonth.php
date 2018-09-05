@@ -27,6 +27,6 @@ class CardExpirationMonth implements Rule
      */
     public function message()
     {
-        return trans('The :attribute must be between :min and :max digits.');
+        return trans('quickpay.card.expiration_month');
     }
 }

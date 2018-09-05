@@ -27,6 +27,6 @@ class CardExpirationYear implements Rule
      */
     public function message()
     {
-        return trans('The :attribute must be between :min and :max digits.');
+        return trans('quickpay.card.expiration_year', ['current' => date('y'), 'future' => (date('y') + 50)]);
     }
 }
