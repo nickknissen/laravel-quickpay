@@ -24,6 +24,8 @@ class QuickPayServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/quickpay.php' => config_path('quickpay.php'),
         ], 'config');
+
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
