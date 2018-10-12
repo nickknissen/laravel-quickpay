@@ -22,10 +22,15 @@ class QuickPayServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/quickpay.php' => config_path('quickpay.php'),
+            __DIR__ . '/../config/quickpay.php' => config_path('quickpay.php'),
         ], 'config');
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        if (! class_exists('CreateCardsTable')) {
+            $timestamp = date('Y_m_d_His', time());
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_cards_tables.php.stub' => $this->app->databasePath()."/migrations/{$timestamp}_create_cards_tables.php",
+            ], 'migrations');
+        }
     }
 
     /**
