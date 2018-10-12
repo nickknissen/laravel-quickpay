@@ -22,7 +22,7 @@ class QuickPayServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/quickpay.php' => config_path('quickpay.php'),
+            __DIR__ . '/../config/quickpay.php' => config_path('quickpay.php'),
         ], 'config');
 
         if (! class_exists('CreateCardsTable')) {
