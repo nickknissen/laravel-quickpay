@@ -28,14 +28,14 @@ class Card extends Model
         });
     }
 
-    public function setNumberAttribute($value)
+    public function setNumberAttribute(number $value)
     {
         $this->attributes['number'] = $value;
         $this->attributes['last_4_digets'] = substr($value, -4);
         $this->attributes['type'] = $this->detectType($value);
     }
 
-    public function detectType($number)
+    public function detectType(number $number) : string
     {
         $res = [
             'Electron' => '/^(4026|417500|4405|4508|4844|4913|4917)\d+$/',
@@ -61,7 +61,7 @@ class Card extends Model
         throw new \Exception('Could not determine card type');
     }
 
-    public function buildPayload()
+    public function buildPayload(): array
     {
         if ($this->quickpay_card_id) {
             $qb = new Quickpay();
@@ -80,7 +80,7 @@ class Card extends Model
         }
     }
 
-    public function createAsQuickpayCard($userId)
+    public function createAsQuickpayCard($userId): Card
     {
         $qb = new Quickpay();
         $cardId = $qb->request('post', '/cards')->id;
@@ -105,7 +105,7 @@ class Card extends Model
         return $this;
     }
 
-    public function asQuickpayCard()
+    public function asQuickpayCard() : object
     {
         $qb = new Quickpay();
         return $qb->request('get', sprintf('/cards/%s', $this->quickpay_card_id));

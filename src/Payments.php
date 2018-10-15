@@ -4,14 +4,13 @@ namespace nickknissen\QuickPay;
 
 class Payments extends Quickpay
 {
-
-    public function find(int $paymentId)
+    public function find(int $paymentId): object
     {
         $url = sprintf('/payments/%s', $paymentId);
         return $this->request('get', $url);
     }
 
-    public function create($orderId, $options = [])
+    public function create(string $orderId, array $options = []): object
     {
         return $this->request('post', '/payments', array_merge([
             'order_id' => sprintf('%s%s', $this->orderIdPrefix(), $orderId),
@@ -19,7 +18,7 @@ class Payments extends Quickpay
         ], $options));
     }
 
-    public function authorize(int $paymentId, int $amount, Card $card, $options = [])
+    public function authorize(int $paymentId, int $amount, Card $card, array $options = []): object
     {
         $url = sprintf('/payments/%s/authorize?synchronized', $paymentId);
 
@@ -27,10 +26,9 @@ class Payments extends Quickpay
             'amount' => $amount,
             'card' => $card->buildPayload(),
         ], $options));
-
     }
 
-    public function capture(int $paymentId, int $amount, $options = [])
+    public function capture(int $paymentId, int $amount, array $options = []): object
     {
         $url = sprintf('/payments/%s/capture?synchronized', $paymentId);
 
@@ -39,14 +37,14 @@ class Payments extends Quickpay
         ], $options));
     }
 
-    public function cancel(int $paymentId)
+    public function cancel(int $paymentId): object
     {
         $url = sprintf('/payments/%s/cancel', $paymentId);
 
         return $this->request('post', $url);
     }
 
-    public function renew(int $paymentId)
+    public function renew(int $paymentId): object
     {
         $url = sprintf('/payments/%s/renew', $paymentId);
 
