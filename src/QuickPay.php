@@ -60,7 +60,7 @@ class Quickpay
 
     public function orderIdPrefix()
     {
-        if (!str_contains(strtolower(config('app.env')), 'prod')) {
+        if (str_contains(strtolower(config('app.env')), 'prod')) {
             return '';
         }
 
