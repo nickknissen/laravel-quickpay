@@ -35,7 +35,7 @@ class Quickpay
         $this->client = new QuickPayVendor($credentials);
     }
 
-    public function request($method, $url, $data = [])
+    public function request(string $method, string $url, array $data = []) : object
     {
         $response = $this->client->request->$method($url, $data);
 
@@ -56,9 +56,7 @@ class Quickpay
         }
     }
 
-
-
-    public function orderIdPrefix()
+    public function orderIdPrefix() : string
     {
         if (str_contains(strtolower(config('app.env')), 'prod')) {
             return '';
