@@ -2,7 +2,7 @@
 
 namespace nickknissen\QuickPay;
 
-class Payments extends Quickpay
+class Payments extends QuickPay
 {
     public function find(int $paymentId): object
     {

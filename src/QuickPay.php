@@ -11,7 +11,7 @@ use nickknissen\QuickPay\Exceptions\ConfigNotCorrect;
 use nickknissen\QuickPay\Exceptions\CardNotAccepted;
 
 
-class Quickpay
+class QuickPay
 {
 
     protected $client;
