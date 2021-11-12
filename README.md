@@ -35,7 +35,7 @@ Ex. order id 12345 becomes `El12345` when `APP_ENV=local` and `ES12345` for `APP
 >> $card = new Card(['number' => 1000000000000008, 'expiration' => 2012, 'cvd' => 123]);
 => nickknissen\QuickPay\Card {#2951
      number: 1000000000000008,
-     last_4_digets: "7569",
+     last_4_digits: "7569",
      type: "Test",
      expiration: 2010,
      cvd: 123,
@@ -43,7 +43,7 @@ Ex. order id 12345 becomes `El12345` when `APP_ENV=local` and `ES12345` for `APP
 
 >> $card->createAsQuickPayCard($userId);
 => nickknissen\QuickPay\Card {#2974
-     last_4_digets: "0008",
+     last_4_digits: "0008",
      type: "Test",
      user_id: 1,
      updated_at: "2018-09-06 07:51:46",
