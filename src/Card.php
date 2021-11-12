@@ -64,7 +64,7 @@ class Card extends Model
     public function buildPayload(): array
     {
         if ($this->quickpay_card_id) {
-            $qb = new Quickpay();
+            $qb = new QuickPay();
             $card = $qb->request(
                 'post',
                 sprintf('/cards/%s/tokens', $this->quickpay_card_id)
@@ -82,7 +82,7 @@ class Card extends Model
 
     public function createAsQuickpayCard($userId): Card
     {
-        $qb = new Quickpay();
+        $qb = new QuickPay();
         $cardId = $qb->request('post', '/cards')->id;
 
         $card = $qb->request(
@@ -107,7 +107,7 @@ class Card extends Model
 
     public function asQuickpayCard() : object
     {
-        $qb = new Quickpay();
+        $qb = new QuickPay();
         return $qb->request('get', sprintf('/cards/%s', $this->quickpay_card_id));
     }
 }
