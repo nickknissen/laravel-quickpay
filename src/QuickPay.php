@@ -16,8 +16,6 @@ class QuickPay
 
     protected $client;
 
-    protected $currency  = 'DKK';
-
     public function __construct()
     {
         $credentials = null;

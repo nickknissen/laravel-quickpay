@@ -10,11 +10,11 @@ class Payment extends QuickPay
         return $this->request('get', $url);
     }
 
-    public function create(string $orderId, array $options = []): object
+    public function create(string $orderId, string $currency, array $options = []): object
     {
         return $this->request('post', '/payments', array_merge([
             'order_id' => sprintf('%s%s', $this->orderIdPrefix(), $orderId),
-            'currency' => $this->currency,
+            'currency' => $currency,
         ], $options));
     }
 
