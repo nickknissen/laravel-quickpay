@@ -31,7 +31,7 @@ class Card extends Model
     public function setNumberAttribute(number $value)
     {
         $this->attributes['number'] = $value;
-        $this->attributes['last_4_digets'] = substr($value, -4);
+        $this->attributes['last_4_digits'] = substr($value, -4);
         $this->attributes['type'] = $this->detectType($value);
     }
 

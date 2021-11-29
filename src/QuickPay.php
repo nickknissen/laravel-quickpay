@@ -16,8 +16,6 @@ class QuickPay
 
     protected $client;
 
-    protected $currency  = 'DKK';
-
     public function __construct()
     {
         $credentials = null;
@@ -58,7 +56,7 @@ class QuickPay
 
     public function orderIdPrefix() : string
     {
-        if (!str_contains(strtolower(config('app.env')), 'prod')) {
+        if (str_contains(strtolower(config('app.env')), 'prod')) {
             return '';
         }
 

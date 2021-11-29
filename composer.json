@@ -3,8 +3,8 @@
     "description": "Simple Laravel Wrapper for the Quickpay API services.",
     "license": "MIT",
     "require": {
-        "php": "~7.2.0",
-        "quickpay/quickpay-php-client": "1.0.*"
+        "php": "~7.2.0 || 8.*",
+        "quickpay/quickpay-php-client": "1.1.*"
     },
     "autoload": {
         "psr-4": {

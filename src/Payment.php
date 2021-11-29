@@ -2,7 +2,7 @@
 
 namespace nickknissen\QuickPay;
 
-class Payments extends QuickPay
+class Payment extends QuickPay
 {
     public function find(int $paymentId): object
     {
@@ -10,11 +10,19 @@ class Payments extends QuickPay
         return $this->request('get', $url);
     }
 
-    public function create(string $orderId, array $options = []): object
+    public function create(string $orderId, string $currency, array $options = []): object
     {
         return $this->request('post', '/payments', array_merge([
             'order_id' => sprintf('%s%s', $this->orderIdPrefix(), $orderId),
-            'currency' => $this->currency,
+            'currency' => $currency,
+        ], $options));
+    }
+
+    public function link(string $paymentId, int $amount, array $options = []): object
+    {
+        $url = sprintf('/payments/%s/link', $paymentId);
+        return $this->request('put', $url, array_merge([
+            'amount' => $amount
         ], $options));
     }
 
