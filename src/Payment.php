@@ -18,6 +18,14 @@ class Payment extends QuickPay
         ], $options));
     }
 
+    public function link(string $paymentId, int $amount, array $options = []): object
+    {
+        $url = sprintf('/payments/%s/link', $paymentId);
+        return $this->request('put', $url, array_merge([
+            'amount' => $amount
+        ], $options));
+    }
+
     public function authorize(int $paymentId, int $amount, Card $card, array $options = []): object
     {
         $url = sprintf('/payments/%s/authorize?synchronized', $paymentId);
